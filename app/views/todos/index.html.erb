@@ -24,7 +24,8 @@
 <table class="table table-bordered table-striped sortable" id="todos_table">
 	<%= render "todos_list", :locals => {todos: @todos}%>
 </table>
-<%= submit_tag 'Delete selected' %>
+<%= submit_tag 'Delete selected' %><br><br>
+<%= link_to "Refresh Todo List", todos_path%>
 <% end %>
 
 <script type="text/javascript">

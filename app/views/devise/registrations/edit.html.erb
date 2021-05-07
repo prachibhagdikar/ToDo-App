@@ -1,8 +1,8 @@
+<%= link_to "View Todo List",todos_path%>
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: edit_user_registration_path(resource.id), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-  <% byebug %>
   <%= f.hidden_field :id, :value => resource.id%>
   <div class="field">
     <%= f.label :first_name %><br />

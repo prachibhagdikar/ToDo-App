@@ -15,11 +15,8 @@
   </div>
   <div>
     <% Todo::CATEGORIES.each do |category, key| %>
-    <% if f.object.new_record? %>
-    <%= f.check_box :categories, { multiple: true }, category, false %>
-    <% else %>
-    <%= f.check_box :categories, { multiple: true ,checked: f.object.categories.include?(category.to_s)}, category %>
-    <% end %>
+      <%= check_box_tag "todo[categories][]", category,f.object.categories.include?(category.to_s), { multiple: true } %>
+
     <label><%=category%></label><br>
     <% end%>
     </br>
@@ -31,6 +28,15 @@
   </div>
   <div>
     <%= f.date_field :date, :value => f.object.date %></br>
+  </div>
+</div>
+
+<div>
+  <div>
+    <%= f.label :is_done, "Mark Done:" %>
+  </div>
+  <div>
+    <%= f.check_box :is_done %></br>
   </div>
 </div>
 <div>
