@@ -1,0 +1,23 @@
+<thead>
+	<th></th>
+	<th>Item</th>
+	<th>Categories</th>
+	<th>Due Date</th>
+	<th>Reminder Alert</th>
+	<th>Completed</th>
+</thead>
+<tbody>
+	<% @todos.each do |todo| %>
+		<tr>
+			<td><input type="checkbox" name="todo_ids[]" value="<%= todo.id%>"></td>
+			<td><%=todo.name%></td>
+			<td><%=todo.categories%></td>
+			<td><%=todo.date%></td>
+			<td><%=todo.reminder%></td>
+			<td><%=todo.is_done%></td>
+			<td><%= link_to "View", todo_path(todo)%></td>
+			<td><%= link_to "Edit", edit_todo_path(todo)%></td>
+			<td><%= link_to "delete", todo, method: :delete, data: { confirm: "You sure?" }%></td>
+		</tr>
+	<% end %>
+</tbody>

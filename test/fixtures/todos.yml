@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: MyString
+  category: MyString
+  is_done: false
+  reminder: false
+  reminder_date: MyString
+  is_public: false
+
+two:
+  date: MyString
+  category: MyString
+  is_done: false
+  reminder: false
+  reminder_date: MyString
+  is_public: false

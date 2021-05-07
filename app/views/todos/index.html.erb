@@ -1,0 +1,79 @@
+<p><%= link_to "New Todo Item", new_todo_path %></p>
+
+<%= form_tag(search_path, method: :post,remote: true,:id =>"search_form") do%>
+	<div>
+		<label>Select Search Category:</label>
+		<%= select_tag :search_category, options_for_select(["Datewise", "Categories", "Completed", "Pending"]) %>
+	</div>
+	<br>
+	<div id="date_search">
+		<label>From date:<%= date_field_tag :from_date%> </label>
+		<label>To date:<%= date_field_tag :to_date%></label>
+	</div>
+	<div id="category_search">
+		<label>Categories: </label>
+		<% Todo::CATEGORIES.each do |category, key| %>
+		    <%= check_box_tag "categories[]", category, false,{multpart: true, :class=>"categories"} %>
+		    <label><%= category%></label><br>
+		<% end%>
+	</div>
+	<%= submit_tag 'Submit', :id => "search_submit" %>
+	<br>
+<% end %>
+<%= form_tag destroy_selected_path, method: :delete,remote: true do %>
+<table class="table table-bordered table-striped sortable" id="todos_table">
+	<%= render "todos_list", :locals => {todos: @todos}%>
+</table>
+<%= submit_tag 'Delete selected' %>
+<% end %>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#date_search").show();
+		$("#category_search").hide();
+		
+		$("#search_category").on("change", function(){
+			if ($(this).val() == "Datewise") {
+				$("#date_search").show();
+				$("#category_search").hide();
+				$(".categories").prop("checked",false);
+			}else if ($(this).val() == "Categories"){
+				$("#date_search").hide();
+				$("#category_search").show();
+				$("#from_date").val("");
+				$("#to_date").val("");
+			}else {
+				$("#date_search").hide();
+				$("#category_search").hide();
+				$(".categories").prop("checked",false);
+				$("#from_date").val("");
+				$("#to_date").val("");
+				$("#search_submit").click();
+			}
+		})
+		
+	})
+	
+	$("#search_submit").on("click",function(e){
+			e.preventDefault();
+			var validate = true;
+			if ($("#search_category").val() == "Datewise") {
+				if ($("#from_date").val() > $("#to_date").val()) {
+					validate = false;
+					alert("From date can not be greater that to date");
+				}else if (($("#from_date").val() == "") || ($("#to_date").val() == "")) {
+					validate = false;
+					alert("Please select date");
+				}
+			}else if ($("#search_category").val() == "Categories"){
+				if ($(".categories:checked").length == 0) {
+					validate = false;
+					alert("Please select at least one check box");
+				}
+			}
+			if (validate) {
+				$("#search_form").submit();
+			}
+		})
+</script>
+
