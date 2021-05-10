@@ -1,14 +1,14 @@
-<p><%= link_to "New Todo Item", new_todo_path %></p>
-
+<p><%= link_to "New Todo Item", new_todo_path,:class=> "btn btn-info" %></p>
+<div>
 <%= form_tag(search_path, method: :post,remote: true,:id =>"search_form") do%>
-	<div>
+	<div class="form-group">
 		<label>Select Search Category:</label>
-		<%= select_tag :search_category, options_for_select(["Datewise", "Categories", "Completed", "Pending"]) %>
+		<%= select_tag :search_category, options_for_select(["Datewise", "Categories", "Completed", "Pending"]),{:class => "form-control"} %>
 	</div>
 	<br>
-	<div id="date_search">
-		<label>From date:<%= date_field_tag :from_date%> </label>
-		<label>To date:<%= date_field_tag :to_date%></label>
+	<div id="date_search" class="form-group">
+		<label>From date:<%= date_field_tag :from_date,nil,:class => "form-control"%> </label>
+		<label>To date:<%= date_field_tag :to_date,nil,:class => "form-control"%></label>
 	</div>
 	<div id="category_search">
 		<label>Categories: </label>
@@ -17,15 +17,16 @@
 		    <label><%= category%></label><br>
 		<% end%>
 	</div>
-	<%= submit_tag 'Submit', :id => "search_submit" %>
+	<%= submit_tag 'Submit', :id => "search_submit", :class => "btn btn-primary" %>
 	<br>
 <% end %>
+</div><br>
 <%= form_tag destroy_selected_path, method: :delete,remote: true do %>
 <table class="table table-bordered table-striped sortable" id="todos_table">
 	<%= render "todos_list", :locals => {todos: @todos}%>
 </table>
-<%= submit_tag 'Delete selected' %><br><br>
-<%= link_to "Refresh Todo List", todos_path%>
+<%= submit_tag 'Delete selected', :class => "btn btn-primary" %><br><br>
+<%= link_to "Refresh Todo List", todos_path, :class => "btn btn-success"%>
 <% end %>
 
 <script type="text/javascript">

@@ -1,37 +1,36 @@
-<%= link_to "View Todo List",todos_path%>
+<%= link_to "View Todo List",todos_path, :class => "btn btn-info"%>
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: edit_user_registration_path(resource.id), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <%= f.hidden_field :id, :value => resource.id%>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name",:class => "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name",:class => "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :gender %><br />
-    <%= f.select :gender, options_for_select(User.genders.map {|k, v| [k.humanize.capitalize, k]}, :selected => resource.gender), autofocus: true, autocomplete: "gender" %>
+    <%= f.select :gender, options_for_select(User.genders.map {|k, v| [k.humanize.capitalize, k]}, :selected => resource.gender),{}, {autofocus: true, autocomplete: "gender",:class => "form-control"} %>
   </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= f.label :address %><br />
-    <%= f.text_area :address,autofocus: true, autocomplete: "address" %>
+    <%= f.text_area :address,autofocus: true, autocomplete: "address",:class => "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :profile_image %><br />
-    <%= f.file_field :profile_image, autofocus: true, autocomplete: "profile_image" %>
+    <%= f.file_field :profile_image, autofocus: true, autocomplete: "profile_image",:class => "form-control-file" %>
   </div>
 
 
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Update", :class => "btn btn-primary" %>
   </div>
 <% end %>
 
