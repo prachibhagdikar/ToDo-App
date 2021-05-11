@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
   devise_scope :user do
-    root to: "devise/sessions#new"
+    root to: 'devise/sessions#new'
   end
   resources :todos
-  post "/search", to: "todos#search"
+  post '/search', to: 'todos#search'
   delete '/destroy_selected', to: 'todos#destroy_selected', as: :destroy_selected
-  get "/profile" => "users#show"
-  get "users/:id/edit" => "users#edit"
-  put "/users/:id" => "users#update"
+  get '/profile' => 'users#show'
+  get 'users/:id/edit' => 'users#edit'
+  put '/users/:id' => 'users#update'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

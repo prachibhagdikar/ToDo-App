@@ -4,8 +4,6 @@ class TodoPresenter
   end
 
   def todo_category
-  	if @todo.categories.present?
-  		return @todo.categories.map(&:titleize).join(",")
-  	end
+    return @todo.categories.map(&:titleize).join(',') if @todo.categories.present?
   end
 end
