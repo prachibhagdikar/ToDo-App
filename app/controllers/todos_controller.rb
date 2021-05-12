@@ -23,7 +23,9 @@ class TodosController < ApplicationController
   end
 
   def create
-    if current_user.todos.create!(todo_params)
+  	@todo = Todo.new(todo_params)
+  	@todo.user_id = current_user.id
+    if @todo.save
       flash[:notice] = 'Todo created successfully.'
       redirect_to todos_path
     else

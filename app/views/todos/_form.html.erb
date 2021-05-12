@@ -27,7 +27,7 @@
     <%= f.label :date, "Date:" %>
   </div>
   <div>
-    <%= f.date_field :date, :value => f.object.date,:class =>"form-control" %></br>
+    <%= f.text_field :date, :value => f.object.date,:class =>"form-control" %></br>
   </div>
 </div>
 
@@ -52,16 +52,19 @@
     <%= f.label :reminder_date, "Reminder Date:" %>
   </div>
   <div>
-    <%= f.date_field :reminder_date, :value => f.object.reminder_date,:class =>"form-control" %></br>
+    <%= f.text_field :reminder_date, :value => f.object.reminder_date,:class =>"form-control" %></br>
   </div>
 </div>
 <div class="form-check">
-  <div>
-    <%= f.label :is_public, "Is Public" %>
-  </div>
-  <div>
-    <%= f.check_box :is_public %></br>
-  </div>
+    <div>
+      <%= f.label :is_public, "Is Public" %>
+    </div>
+    <div>
+      <%= f.label :is_public, "Yes", :value => "true"  %>
+      <%= f.radio_button :is_public, true %>
+      <%= f.label :is_public, "No", :value => "false" %>
+      <%= f.radio_button :is_public, false, :checked => true %>
+    </div>
 </div>
 <div class="form-group">
   <div>
@@ -72,8 +75,13 @@
   </div>
 </div>
 <script type="text/javascript">
-  $("#reminder_date").hide();
-  checkReminder();
+  $(document).ready(function(){
+    $("#todo_date").datepicker();
+    $("#todo_reminder_date").datepicker();
+    $("#reminder_date").hide();
+    checkReminder();
+  })
+  
   $("#todo_reminder").on("change",function(){
     checkReminder();
   })
@@ -85,5 +93,22 @@
       $("#reminder_date").hide();
       $("#todo_reminder_date").val("");
     } 
+  }
+
+  function validateForm(e) {
+    if ($("#todo_reminder").is(":checked")) {
+      if ($("#todo_reminder_date").val() == "") {
+        alert("Please add reminder date")
+        return false;
+      }else if (new Date($("#todo_reminder_date").val()) > new Date($("#todo_date").val())) {
+        alert("Reminder date can not be greater than the due date");
+        return false;
+      }
+    }else if (new Date($("#todo_date").val()) < new Date()) {
+      alert("Please select date greater that today's date")
+      return false;
+    }else{
+      return true;
+    }
   }
 </script>

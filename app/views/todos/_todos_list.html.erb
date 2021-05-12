@@ -9,7 +9,12 @@
 </thead>
 <tbody>
 	<% @todos.each do |todo| %>
-		<tr>
+		<% if todo.reminder_date.present? && Date.strptime(todo.reminder_date, '%m/%d/%Y').between?(Date.today.beginning_of_day, Date.today.end_of_day) %>
+				<% reminder_class = "reminder_class"%>
+		<% else %>
+			 <% reminder_class = ""%>
+		<% end %>
+		<tr class="<%= reminder_class%>" data-name="<%= todo.name %>" data-date="<%= todo.date%>">
 			<td><input type="checkbox" name="todo_ids[]" value="<%= todo.id%>"></td>
 			<%todo_presenter = TodoPresenter.new(todo)%>
 			<td><%=todo.name%></td>

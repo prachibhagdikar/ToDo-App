@@ -77,5 +77,16 @@
 				$("#search_form").submit();
 			}
 		})
+    function reminderAlert() {
+	 		if ($("tr.reminder_class").length > 0) {
+				$.each($(".reminder_class"),function(){
+					var name = $(this).data("name");
+					var date = $(this).data("date");
+					alert("Reminder: Todo item - "+name+" needs to be done.Due date is "+date);
+				})
+			}
+		};
+	
+	setTimeout(reminderAlert(), 1000 * 10);
 </script>
 

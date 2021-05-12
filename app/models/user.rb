@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :todos
+  has_many :todos, dependent: :destroy
   mount_uploader :profile_image, ProfileImageUploader
   enum gender: { male: 0, female: 1, other: 2 }
   validates :email, presence: true, uniqueness: true
