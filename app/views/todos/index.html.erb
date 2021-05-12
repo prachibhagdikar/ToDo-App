@@ -33,7 +33,6 @@
 	$(document).ready(function(){
 		$("#date_search").show();
 		$("#category_search").hide();
-		
 		$("#search_category").on("change", function(){
 			if ($(this).val() == "Datewise") {
 				$("#date_search").show();
@@ -53,40 +52,34 @@
 				$("#search_submit").click();
 			}
 		})
-		
+		if ($("tr.reminder_class").length > 0) {
+ 			$.each($(".reminder_class"),function(){
+				var name = $(this).data("name");
+				var date = $(this).data("date");
+				setTimeout(function(){ alert("Reminder: Todo item - "+name+" needs to be done.Due date is "+date) }, 2000);
+			})
+		}
 	})
 	
 	$("#search_submit").on("click",function(e){
-			e.preventDefault();
-			var validate = true;
-			if ($("#search_category").val() == "Datewise") {
-				if ($("#from_date").val() > $("#to_date").val()) {
-					validate = false;
-					alert("From date can not be greater that to date");
-				}else if (($("#from_date").val() == "") || ($("#to_date").val() == "")) {
-					validate = false;
-					alert("Please select date");
-				}
-			}else if ($("#search_category").val() == "Categories"){
-				if ($(".categories:checked").length == 0) {
-					validate = false;
-					alert("Please select at least one check box");
-				}
+		e.preventDefault();
+		var validate = true;
+		if ($("#search_category").val() == "Datewise") {
+			if ($("#from_date").val() > $("#to_date").val()) {
+				validate = false;
+				alert("From date can not be greater that to date");
+			}else if (($("#from_date").val() == "") || ($("#to_date").val() == "")) {
+				validate = false;
+				alert("Please select date");
 			}
-			if (validate) {
-				$("#search_form").submit();
+		}else if ($("#search_category").val() == "Categories"){
+			if ($(".categories:checked").length == 0) {
+				validate = false;
+				alert("Please select at least one check box");
 			}
-		})
-    function reminderAlert() {
-	 		if ($("tr.reminder_class").length > 0) {
-				$.each($(".reminder_class"),function(){
-					var name = $(this).data("name");
-					var date = $(this).data("date");
-					alert("Reminder: Todo item - "+name+" needs to be done.Due date is "+date);
-				})
-			}
-		};
-	
-	setTimeout(reminderAlert(), 1000 * 10);
-</script>
-
+		}
+		if (validate) {
+			$("#search_form").submit();
+		}
+	})
+	</script>
