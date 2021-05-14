@@ -13,26 +13,9 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "todos";
 /*
  *= require bootstrap-sortable
  *= require_tree .
  *= require_self
  */
-
-.main {
-	background: ghostwhite;
-	padding: 25px;
-}
-
-.field {
-	margin: 15px 0px;
-}
-.form-control {
-	width: 30%;
-}
-#date_search .form-control {
-	width: 100%;
-}
-tr.reminder_class {
-	background: #e27373 !important;
-}

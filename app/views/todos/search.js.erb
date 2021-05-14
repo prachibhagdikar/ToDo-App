@@ -1,1 +1,1 @@
-$("#todos_table").html("<%= escape_javascript render(:partial => 'todos_list', :locals => { :todos => @todos }) %>");
+$("#todos_table").html("<%= escape_javascript render(partial: 'todos_list', locals: { todos: @todos }) %>");
