@@ -5,11 +5,13 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def edit; end
+  def edit
+  	@user = User.find(params[:id])
+  end
 
   def update
-    user = User.find(params[:user][:id])
-    if user.update(user_params)
+    @user = User.find(params[:user][:id])
+    if @user.update(user_params)
       redirect_to profile_path
     else
       render :edit

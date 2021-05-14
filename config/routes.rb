@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   post '/search', to: 'todos#search'
   delete '/destroy_selected', to: 'todos#destroy_selected', as: :destroy_selected
   get '/profile' => 'users#show'
-  get 'users/:id/edit' => 'users#edit'
-  put '/users/:id' => 'users#update'
+  get 'users/:id/edit' => 'users#edit', as: :edit_profile
+  put '/users/:id' => 'users#update', as: :update_profile
   namespace :api  do
     namespace :v1 do
       resources :users

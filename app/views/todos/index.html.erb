@@ -7,8 +7,12 @@
 	</div>
 	<br>
 	<div id="date_search" class="form-group">
-		<label>From date:<%= date_field_tag :from_date,nil, class: "form-control"%> </label>
-		<label>To date:<%= date_field_tag :to_date,nil, class: "form-control"%></label>
+		<div class='input-group date' id='datepicker-from-date'><label>From date: <%= text_field_tag :from_date,nil, class: "form-control", autocomplete: 'off'%><span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span></div> </label>
+		<div class='input-group date' id='datepicker-to-date'><label>To date: <%= text_field_tag :to_date,nil, class: "form-control", autocomplete: 'off'%><span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span></div></label>
 	</div>
 	<div id="category_search">
 		<label>Categories: </label>
@@ -31,6 +35,12 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		$("#from_date").datepicker({
+      format: 'yyyy-mm-dd'
+    });
+    $("#to_date").datepicker({
+      format: 'yyyy-mm-dd'
+    });
 		$("#date_search").show();
 		$("#category_search").hide();
 		$("#search_category").on("change", function(){

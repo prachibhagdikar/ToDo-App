@@ -1,4 +1,5 @@
 class TodosController < ApplicationController
+  include TodosHelper
   before_action :authenticate_user!
 
   def index
@@ -6,16 +7,7 @@ class TodosController < ApplicationController
   end
 
   def search
-    @todos = case params[:search_category]
-             when 'Datewise'
-               current_user.todos.where('date between ? and ?', params[:from_date], params[:to_date])
-             when 'Categories'
-               current_user.todos.where('categories = ?', params[:categories].to_yaml)
-             when 'Completed'
-               current_user.todos.where(is_done: true)
-             else
-               current_user.todos.where('date > ?', Date.today)
-             end
+    @todos = TodosHelper.search(params, current_user)
   end
 
   def new
@@ -23,8 +15,7 @@ class TodosController < ApplicationController
   end
 
   def create
-    @todo = Todo.new(todo_params)
-    @todo.user_id = current_user.id
+    @todo = current_user.todos.new(todo_params)
     if @todo.save
       flash[:notice] = 'Todo created successfully.'
       redirect_to todos_path
@@ -35,15 +26,15 @@ class TodosController < ApplicationController
   end
 
   def show
-    @todo = Todo.find(params[:id])
+    @todo = current_user.todos.find(params[:id])
   end
 
   def edit
-    @todo = Todo.find(params[:id])
+    @todo = current_user.todos.find(params[:id])
   end
 
   def update
-    @todo = Todo.find(params[:id])
+    @todo = current_user.todos.find(params[:id])
     if @todo.update todo_params
       flash[:notice] = 'Todo updated successfully.'
       redirect_to todo_path(@todo)

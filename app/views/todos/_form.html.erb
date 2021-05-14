@@ -1,42 +1,43 @@
-<% @todo.errors.full_messages.each do |message|%>
-<h3 style="color:red;"><%= message %> </h3>
-<%end%>
-<div class="form-group">
+
+<%= form_group_for f, :name, label: false  do %>
   <div>
     <%= f.label :name, "Title:" %>
   </div>
   <div>
-    <%= f.text_field :name, class: "form-control" %></br>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
-</div>
+<% end %>
 <div class="form-group">
   <div>
     <%= f.label :categories, "Categories:" %>
   </div>
   <div>
+    <%= form_group_for f, :categories, label: false  do %>
     <% Todo::CATEGORIES.each do |category, key| %>
       <%= check_box_tag "todo[categories][]", category,f.object.categories.include?(category.to_s), { multiple: true } %>
 
     <label><%=category%></label><br>
     <% end%>
+    <% end %>
     </br>
   </div>
 </div>
-<div class="form-group">
+<%= form_group_for f, :date, label: false  do %>
   <div>
     <%= f.label :date, "Date:" %>
   </div>
-  <div>
-    <%= f.text_field :date, value: f.object.date, class: "form-control" %></br>
+   <div class="input-group date">
+    
+    <%= f.text_field :date, value: f.object.date, class: "form-control", autocomplete: 'off' %><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+    
   </div>
-</div>
-
+<% end %>
 <div class="form-group">
   <div>
     <%= f.label :is_done, "Mark Done:" %>
   </div>
   <div>
-    <%= f.check_box :is_done %></br>
+    <%= f.check_box :is_done %>
   </div>
 </div>
 <div class="form-check">
@@ -44,16 +45,20 @@
     <%= f.label :reminder, "Add Reminder:" %>
   </div>
   <div>
-    <%= f.check_box :reminder %></br>
+    <%= f.check_box :reminder %>
   </div>
 </div>
-<div id="reminder_date" class="form-group">
+<div id="reminder_date">
+<%= form_group_for f, :reminder_date, label: false do %>
   <div>
     <%= f.label :reminder_date, "Reminder Date:" %>
   </div>
-  <div>
-    <%= f.text_field :reminder_date, value: f.object.reminder_date, class: "form-control" %></br>
+  <div class="input-group date">
+    
+    <%= f.text_field :reminder_date, value: f.object.reminder_date, class: "form-control", autocomplete: 'off' %><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+    
   </div>
+<% end %>
 </div>
 <div class="form-check">
     <div>
@@ -71,13 +76,17 @@
     <%= f.label :todo_attachment, "Todo Attachment" %>
   </div>
   <div>
-    <%= f.file_field :todo_attachment, class: "form-control-file" %></br>
+    <%= f.file_field :todo_attachment, class: "form-control-file" %>
   </div>
 </div>
 <script type="text/javascript">
   $(document).ready(function(){
-    $("#todo_date").datepicker();
-    $("#todo_reminder_date").datepicker();
+    $("#todo_date").datepicker({
+      format: 'yyyy-mm-dd'
+    });
+    $("#todo_reminder_date").datepicker({
+      format: 'yyyy-mm-dd'
+    });
     $("#reminder_date").hide();
     checkReminder();
   })

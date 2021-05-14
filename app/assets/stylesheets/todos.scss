@@ -12,10 +12,20 @@
 	width: 30%;
 }
 #date_search {
+	display: flex;
 	.form-control {
-		width: 100%;
+		width: 85%;
+	}
+	.input-group-addon {
+		padding: 8px 12px !important;
 	}
 }
 tr.reminder_class {
 	background: #e27373 !important;
+}
+
+.todo_form {
+	.input-group {
+		width: 30%;
+	}
 }
