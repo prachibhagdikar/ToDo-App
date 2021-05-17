@@ -1,0 +1,35 @@
+<%= link_to "View Todo List",todos_path, :class => "btn btn-info"%>
+<h2>Edit Profile</h2>
+
+<%= form_for(@user,  url: update_profile_path(@user.id), html: { method: :put }) do |f| %>
+  <%= f.hidden_field :id, value: @user.id%>
+  <%= form_group_for f, :first_name, label: false  do %>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control" %>
+  <% end %>
+
+  <%= form_group_for f, :last_name, label: false  do %>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "form-control" %>
+  <% end %>
+
+  <%= form_group_for f, :gender, label: false  do %>
+    <%= f.label :gender %>
+    <%= f.select :gender, options_for_select(User.genders.map {|k, v| [k.humanize.capitalize, k]}, :selected => @user.gender),{}, {autofocus: true, autocomplete: "gender", class: "form-control"} %>
+  <% end %>
+  <%= form_group_for f, :address, label: false  do %>
+    <%= f.label :address %>
+    <%= f.text_area :address, autofocus: true, autocomplete: "address", class: "form-control" %>
+  <% end %>
+
+  <%= form_group_for f, :profile_image, label: false  do %>
+    <%= f.label :profile_image %>
+    <%= f.file_field :profile_image, autofocus: true, autocomplete: "profile_image", class: "form-control-file" %>
+  <% end %>
+
+
+  <div class="actions">
+    <%= f.submit "Update", class: "btn btn-primary" %>
+  </div>
+<% end %>
+

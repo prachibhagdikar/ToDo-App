@@ -4,11 +4,11 @@ Rails.application.routes.draw do
     root to: 'devise/sessions#new'
   end
   resources :todos
-  post '/search', to: 'todos#search'
-  delete '/destroy_selected', to: 'todos#destroy_selected', as: :destroy_selected
-  get '/profile' => 'users#show'
-  get 'users/:id/edit' => 'users#edit', as: :edit_profile
-  put '/users/:id' => 'users#update', as: :update_profile
+  post 'search', to: 'todos#search'
+  delete 'destroy_selected', to: 'todos#destroy_selected', as: :destroy_selected
+  get 'profile', to: 'users#show'
+  get 'users/:id/edit', to: 'users#edit', as: :edit_profile
+  put 'users/:id', to: 'users#update', as: :update_profile
   namespace :api  do
     namespace :v1 do
       resources :users
