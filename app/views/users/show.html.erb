@@ -9,3 +9,5 @@
 	<li><strong>Gender:</strong> <%= @user.gender%></li>
 	<li><strong>Profile Image:</strong> <%= image_tag @user.profile_image.url, width: "100", height: 100%></li>
 </ul>
+
+<%= link_to "View Todo List",todos_path, class: "btn btn-success"%>

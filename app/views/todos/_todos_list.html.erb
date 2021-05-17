@@ -9,7 +9,7 @@
 </thead>
 <tbody>
 	<% @todos.each do |todo| %>
-		<% if todo.reminder_date.present? && Date.strptime(todo.reminder_date, '%m/%d/%Y').between?(Date.today.beginning_of_day, Date.today.end_of_day) %>
+		<% if todo.reminder_date.present? && todo.reminder_date.between?(Date.today.beginning_of_day, Date.today.end_of_day) %>
 				<% reminder_class = "reminder_class"%>
 		<% else %>
 			 <% reminder_class = ""%>

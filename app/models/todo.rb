@@ -5,7 +5,6 @@ class Todo < ActiveRecord::Base
   validates_format_of :date, with: /\d{4}\-\d{2}\-\d{2}/, message: 'Date must be in the following format: yyyy-mm-dd'
   serialize :categories, Array
   validates_format_of :reminder_date, with: /\d{4}\-\d{2}\-\d{2}/, message: 'Reminder date must be in the following format: yyyy-mm-dd', if: :reminder
-  serialize :categories, Array
   CATEGORIES = { home: 0, work: 2, vacation: 3, urgent: 4, normal: 5, medical: 6, school: 7, college: 8 }
 
   validate :validate_categories, :date_not_in_past
@@ -15,9 +14,13 @@ class Todo < ActiveRecord::Base
   scope :pending, -> { where('date > ?', Date.today) }
   scope :between_dates, ->(from_date, to_date) { where('date between ? and ?', from_date, to_date) }
 
+
+
   def validate_categories
-    if !categories.is_a?(Array) || categories.detect { |d| !CATEGORIES.include?(d) }
-      errors.add(:categories, "#{categories} value is invalid")
+    if (invalid_categories = (categories - CATEGORIES.keys.map(&:to_s)))
+      invalid_categories.each do |category|
+        errors.add(:categories, category + " is not a valid category")
+      end
     end
   end
 
