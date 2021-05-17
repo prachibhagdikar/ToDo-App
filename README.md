@@ -1,4 +1,7 @@
 # ToDo-App
-## After user signup , user will be able to create the todo list, view the list and each todo item and will be able to edit the todo item
-## User will be able to search the todo list datewise, category wise and status wise
-## User will be able to sort the list
+- After user signup , user will be able to create the todo list, view the list and each todo item and will be able to edit the todo item
+> 
+- User will be able to search the todo list datewise, category wise and status wise
+> 
+- User will be able to sort the list
+> NOTE: Please clean the database and start the application again to avoid any errors after latest pull
