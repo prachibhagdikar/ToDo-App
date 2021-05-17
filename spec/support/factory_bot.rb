@@ -12,10 +12,10 @@ FactoryBot.define do
   factory :todo do
     name { 'To buy groceries' }
     categories { %w[home medical] }
-    date { Date.new(2021, 5, 15) }
+    date { Date.today + 3.days }
     is_done { false }
     reminder { true }
-    reminder_date { Date.new(2001, 5, 14) }
+    reminder_date { Date.today + 2.days }
     user
   end
 end

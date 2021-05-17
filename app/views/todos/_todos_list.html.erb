@@ -19,7 +19,7 @@
 			<%todo_presenter = TodoPresenter.new(todo)%>
 			<td><%=todo.name%></td>
 			<td><%=todo_presenter.todo_category%></td>
-			<td><%=todo.date%></td>
+			<td data-dateformat="YYYY-MM-DD"><%=todo.date%></td>
 			<td><%=todo.reminder%></td>
 			<td><%=todo.is_done%></td>
 			<td><%= link_to "View", todo_path(todo)%></td>

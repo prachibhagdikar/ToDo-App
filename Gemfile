@@ -11,7 +11,7 @@ gem 'devise', '~> 4.2'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'momentjs-rails'
-gem 'mysql2', '>= 0.3.18'
+gem 'mysql2'
 gem 'rails_bootstrap_sortable'
 gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
