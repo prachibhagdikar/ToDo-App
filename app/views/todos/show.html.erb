@@ -4,6 +4,8 @@
 <% presenter = TodoPresenter.new(@todo)%>
 <p><strong>Categories:</strong> <%= presenter.todo_category%></p>
 <p><strong>Reminder Alert:</strong> <%= @todo['reminder']%></p>
-<p><strong>Todo Attachment:</strong> <%= image_tag @todo.todo_attachment.url, width: "100", height: "100" %></p>
+<p><strong>Reminder Date:</strong> <%= @todo['reminder_date']%></p>
+<p><strong>Mark Done:</strong> <%= @todo['is_done']%></p>
+<p><strong>Todo Attachment:</strong> <%= image_tag @todo.todo_attachment.url, width: "100", height: "100" if @todo.todo_attachment.present? %> </p>
 
 <%= link_to "Back To Todo List", todos_path, class: "btn btn-info"%>

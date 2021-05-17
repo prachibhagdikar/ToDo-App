@@ -55,7 +55,12 @@ class TodosController < ApplicationController
 
   def destroy_selected
     todos = current_user.todos.where(id: params[:todo_ids])
-    todos.destroy_all
+    if todos.present?
+      todos.destroy_all
+      flash[:notice] = 'Selected todos deleted succesfully.'
+    else
+      flash[:alert] = 'Something went wrong.'
+    end
     redirect_to todos_path
   end
 
