@@ -6,6 +6,7 @@
 #
 default: &default
   adapter: mysql2
+  
 
 development:
   <<: *default
@@ -26,5 +27,5 @@ test:
   host: 127.0.0.1
 
 production:
-  adapter: postgresql
+  <<: *default
   url: <%= ENV['DATABASE_URL'] %>
