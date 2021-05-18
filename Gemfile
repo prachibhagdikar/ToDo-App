@@ -12,7 +12,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'momentjs-rails'
 gem 'mysql2'
-gem 'pg'
+gem 'pg', '~> 0.18'
 gem 'rails_bootstrap_sortable'
 gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
