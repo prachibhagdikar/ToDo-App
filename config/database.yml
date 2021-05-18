@@ -10,7 +10,7 @@ default: &default
 
 development:
   <<: *default
-  database: todo_app
+  database: todo_app_dev
   username: root
   password: password
   host: 127.0.0.1
@@ -27,6 +27,6 @@ test:
   host: 127.0.0.1
 
 production:
-  <<: *default
+ adapter: postgresql
   database: todo_app_live
   url: <%= ENV['DATABASE_URL'] %>
