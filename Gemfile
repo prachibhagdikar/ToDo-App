@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.11.1'
 # Use sqlite3 as the database for Active Record
 gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-multiselect-rails'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'carrierwave', '~> 1.3'
 gem 'coffee-rails', '~> 4.1.0'

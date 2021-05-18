@@ -24,6 +24,7 @@
 
   <%= form_group_for f, :profile_image, label: false  do %>
     <%= f.label :profile_image %>
+    <%= image_tag f.object.profile_image.url if f.object.profile_image.present? %>
     <%= f.file_field :profile_image, autofocus: true, autocomplete: "profile_image", class: "form-control-file" %>
   <% end %>
 

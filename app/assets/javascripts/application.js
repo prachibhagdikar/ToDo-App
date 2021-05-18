@@ -17,4 +17,5 @@
 //= require moment
 //= require bootstrap-sortable
 //= require bootstrap-datepicker
+//= require bootstrap-multiselect
 //= require_tree .

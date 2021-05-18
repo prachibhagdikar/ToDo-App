@@ -8,23 +8,27 @@
 	<th colspan="3"></th>
 </thead>
 <tbody>
-	<% @todos.each do |todo| %>
-		<% if todo.reminder_date.present? && todo.reminder_date.between?(Date.today.beginning_of_day, Date.today.end_of_day) %>
-				<% reminder_class = "reminder_class"%>
-		<% else %>
-			 <% reminder_class = ""%>
+	<%if @todos.present?%>
+		<% @todos.each do |todo| %>
+			<% if todo.reminder_date.present? && todo.reminder_date.between?(Date.today.beginning_of_day, Date.today.end_of_day) %>
+					<% reminder_class = "reminder_class"%>
+			<% else %>
+				 <% reminder_class = ""%>
+			<% end %>
+			<tr class="<%= reminder_class%>" data-name="<%= todo.name %>" data-date="<%= todo.date%>">
+				<td><input type="checkbox" name="todo_ids[]" value="<%= todo.id%>"></td>
+				<%todo_presenter = TodoPresenter.new(todo)%>
+				<td><%=todo.name%></td>
+				<td><%=todo_presenter.todo_category%></td>
+				<td data-dateformat="YYYY-MM-DD"><%=todo.date%></td>
+				<td><%=todo.reminder%></td>
+				<td><%=todo.is_done%></td>
+				<td><%= link_to "View", todo_path(todo)%></td>
+				<td><%= link_to "Edit", edit_todo_path(todo)%></td>
+				<td><%= link_to "Delete", todo, method: :delete, data: { confirm: "You sure?" }%></td>
+			</tr>
 		<% end %>
-		<tr class="<%= reminder_class%>" data-name="<%= todo.name %>" data-date="<%= todo.date%>">
-			<td><input type="checkbox" name="todo_ids[]" value="<%= todo.id%>"></td>
-			<%todo_presenter = TodoPresenter.new(todo)%>
-			<td><%=todo.name%></td>
-			<td><%=todo_presenter.todo_category%></td>
-			<td data-dateformat="YYYY-MM-DD"><%=todo.date%></td>
-			<td><%=todo.reminder%></td>
-			<td><%=todo.is_done%></td>
-			<td><%= link_to "View", todo_path(todo)%></td>
-			<td><%= link_to "Edit", edit_todo_path(todo)%></td>
-			<td><%= link_to "Delete", todo, method: :delete, data: { confirm: "You sure?" }%></td>
-		</tr>
+	<% else %>
+		<tr class="text-center"><td colspan=7>No record found.</td></tr>
 	<% end %>
 </tbody>

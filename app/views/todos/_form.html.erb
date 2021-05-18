@@ -32,6 +32,7 @@
     
   </div>
 <% end %>
+<% unless f.object.new_record? %>
 <div class="form-group">
   <div>
     <%= f.label :is_done, "Mark Done:" %>
@@ -40,6 +41,7 @@
     <%= f.check_box :is_done %>
   </div>
 </div>
+<% end %>
 <div class="form-check">
   <div>
     <%= f.label :reminder, "Add Reminder:" %>

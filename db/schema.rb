@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210506134635) do
+ActiveRecord::Schema.define(version: 20210518161905) do
 
   create_table "todos", force: :cascade do |t|
     t.string   "name",            limit: 255
     t.string   "date",            limit: 255
-    t.boolean  "is_done"
+    t.boolean  "is_done",                     default: false
     t.boolean  "reminder"
     t.string   "reminder_date",   limit: 255
-    t.boolean  "is_public"
+    t.boolean  "is_public",                   default: false
     t.integer  "user_id",         limit: 4
     t.string   "categories",      limit: 255, default: "--- []\n"
     t.string   "todo_attachment", limit: 255
