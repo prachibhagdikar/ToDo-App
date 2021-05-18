@@ -28,4 +28,5 @@ test:
 
 production:
   <<: *default
+  database: todo_app_live
   url: <%= ENV['DATABASE_URL'] %>
