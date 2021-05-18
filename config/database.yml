@@ -27,6 +27,6 @@ test:
   host: 127.0.0.1
 
 production:
- adapter: postgresql
+  adapter: postgresql
   database: todo_app_live
   url: <%= ENV['DATABASE_URL'] %>
