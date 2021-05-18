@@ -31,7 +31,7 @@ class Todo < ActiveRecord::Base
   def reminder_date_before_due_date
     if reminder_date.present? && date.present?
       if (reminder_date.to_date > date.to_date) || (reminder_date.to_date < Date.today)
-        errors.add(:date, 'Reminder date should be before the due date and can not be in the past')
+        errors.add(:reminder_date, 'Reminder date should be before the due date and can not be in the past')
       end
     end
   end

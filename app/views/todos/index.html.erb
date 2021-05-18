@@ -63,10 +63,10 @@
 			}
 		})
 		if ($("tr.reminder_class").length > 0) {
- 			$.each($(".reminder_class"),function(){
+ 			$.each($("tr.reminder_class"),function(){
 				var name = $(this).data("name");
 				var date = $(this).data("date");
-				setTimeout(function(){ alert("Reminder: Todo item - "+name+" needs to be done.Due date is "+date) }, 2000);
+				setTimeout(function(){ alert("Reminder: Todo item - "+name+" needs to be done. Due date is "+date) }, 2000);
 			})
 		}
 	})
