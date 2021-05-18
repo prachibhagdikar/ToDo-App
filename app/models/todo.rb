@@ -11,7 +11,7 @@ class Todo < ActiveRecord::Base
   validate :reminder_date_before_due_date, if: :reminder
 
   scope :completed, -> { where(is_done: true) }
-  scope :pending, -> { where('date > ?', Date.today) }
+  scope :pending, -> { where('date > ? and is_done = ?', Date.today, false) }
   scope :between_dates, ->(from_date, to_date) { where('date between ? and ?', from_date, to_date) }
 
 
